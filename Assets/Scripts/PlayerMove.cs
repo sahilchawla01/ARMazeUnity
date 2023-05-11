@@ -7,11 +7,10 @@ public class PlayerMove : MonoBehaviour
 {
     GameObject player;
     Rigidbody rb;
-    bool upForce;
-    bool downForce;
-    bool leftForce;
-    bool rightForce;
-    bool buttonPressed;
+    // bool upForce;
+    // bool downForce;
+    // bool leftForce;
+    // bool rightForce;
 
     void OnEnable()
     {
@@ -28,64 +27,66 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(upForce && buttonPressed)
-        {
-            rb.AddForce(Vector3.forward);
-        }
-        if(downForce && buttonPressed)
-        {
-            rb.AddForce(Vector3.back);
-        }
-        if(leftForce && buttonPressed)
-        {
-            rb.AddForce(Vector3.left);
-        }
-        if(rightForce && buttonPressed)
-        {
-            rb.AddForce(Vector3.right);
-        }
+        // if(upForce)
+        // {
+        //     rb.AddForce(Vector3.forward * 1f);
+        // }
+        // if(downForce)
+        // {
+        //     rb.AddForce(Vector3.back * 1f);
+        // }
+        // if(leftForce)
+        // {
+        //     rb.AddForce(Vector3.left * 1f);
+        // }
+        // if(rightForce)
+        // {
+        //     rb.AddForce(Vector3.right * 1f);
+        // }
 
-        if(rb.velocity.magnitude >= 5f)
+        if(rb.velocity.magnitude >= 20f)
         {
-            upForce = false;
-            downForce = false;
-            leftForce = false;
-            rightForce = false;
+            // upForce = false;
+            // downForce = false;
+            // leftForce = false;
+            // rightForce = false;
+            rb.velocity = rb.velocity.normalized * 20f;
         }
     }
 
     public void UpForce()
     {
-        upForce = true;
-        // rb.AddForce(Vector3.forward * 0.5f);
+        // upForce = true;
+        // downForce = false;
+        // leftForce = false;
+        // rightForce = false;
+        rb.AddForce(Vector3.forward * 5f);
     }
 
     public void DownForce()
     {
-        downForce = true;
-        // rb.AddForce(Vector3.back * 0.5f);
+        // downForce = true;
+        // upForce = false;
+        // leftForce = false;
+        // rightForce = false;
+        rb.AddForce(Vector3.back * 5f);
     }
 
     public void LeftForce()
     {
-        leftForce = true;
-        // rb.AddForce(Vector3.left * 0.5f);
+        // leftForce = true;
+        // upForce = false;
+        // downForce = false;
+        // rightForce = false;
+        rb.AddForce(Vector3.left * 5f);
     }
 
     public void RightForce()
     {
-        rightForce = true;
-        // rb.AddForce(Vector3.right * 0.5f);
-    }
-
-    public void OnPointerDown(PointerEventData eventData){
-        buttonPressed = true;
-    }
-    public void OnPointerUp(PointerEventData eventData){
-        buttonPressed = false;
-        upForce = false;
-        downForce = false;
-        leftForce = false;
-        rightForce = false;
+        // rightForce = true;
+        // upForce = false;
+        // downForce = false;
+        // leftForce = false;
+        rb.AddForce(Vector3.right * 5f);
     }
 }
